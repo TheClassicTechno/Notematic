@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="images/logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NoteMatic</title>
+<script src="script.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols&display=swap" rel="stylesheet">
+<!-- Bootstrap CSS link -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel = "stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <a class="navbar-brand" ></a>
+   <a href="index.html" class="pull-left"><img src="images/icons.png"width="80" 
+     height="55"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+           <li class="nav-item">
+          <div class="dropdown">
+          <a class = "nav-link">My Sets</a>  
+          <div class="dropdown-content">
+          <p>Hello World!</p>
+          <p> testing</p>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        
+        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+      </li>
+  <li class="nav-item">
+        <a class="nav-link" href="study.html">Study</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="quiz.html">Quizzes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html">Contact</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container">
+ <a href="#" ><img src="images/logo.png"width="240" 
+     height="150"></a> 
+  <p>Study smarter with AI. </p>
+</div>
+
+<section id="about"></section>
+ <h2>Newsletter Subscription <h2>
+   <small>Want to be updated on our latest product updates and events? Feel free to subscribe below: <br></small>
+   <?php
+// define variables and set to empty values
+$nameErr = $emailErr = $genderErr = $websiteErr = "";
+$name = $email = $gender = $comment = $website = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["name"])) {
+    $nameErr = "Name is required";
+  } else {
+    $name = test_input($_POST["name"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+      $nameErr = "Only letters and white space allowed";
+    }
+  }
+  
+  if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+  } else {
+    $email = test_input($_POST["email"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format";
+    }
+  }
+    
+  if (empty($_POST["website"])) {
+    $website = "";
+  } else {
+    $website = test_input($_POST["website"]);
+    // check if URL address syntax is valid (this regular expression also allows dashes in the URL)
+    if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
+      $websiteErr = "Invalid URL";
+    }
+  }
+
+  if (empty($_POST["comment"])) {
+    $comment = "";
+  } else {
+    $comment = test_input($_POST["comment"]);
+  }
+
+  if (empty($_POST["gender"])) {
+    $genderErr = "Gender is required";
+  } else {
+    $gender = test_input($_POST["gender"]);
+  }
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+<div class="box">
+<p><br></p>
+<p><span class="error">* required field</span></p>
+<form>
+  Name: <input type="text" name="name" value="">
+  <span class="error"> <?php echo $nameErr;?></span>
+  <br><br>
+  E-mail: <input type="text" name="email" value="">
+  <span class="error">* <?php echo $emailErr;?></span>
+  <br><br>
+  
+  
+</div> 
+  
+</form>
+     <button onclick="unhide1()">Submit</button>
+<div class="action1">
+    <p>Thank you! Your info has been submitted. Notematic will send out newsletters every 7 business days.</p>
+</div>
+<!--
+<?php
+echo "<h2>Your Input:</h2>";
+echo $name;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo $website;
+echo "<br>";
+echo $comment;
+
+?>
+-->
+  <script src = "./test.js"> </script>
+<!-- Bootstrap JS and Popper.js scripts (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<div class="footer">
+     <img src="images/logo.png"  width="190" height="150"
+      style="vertical-align:middle;margin:12px 0px">
+ <div class="social-icons">
+
+       <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+
+      <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+    
+      <a href="https://www.facebook.com/" target="_blank"><i
+          class="fab fa-facebook"></i></a>
+
+
+    </div>
+    <h6>&copy; 2023 Notematic. All rights reserved.<br><br></h6>
+  <div class="footer-buttons">
+    <a href="mailto: contact@notematic.com" target="_blank"
+      >Email
+      Us
+    </a>
+    <a href="subscribe.html" 
+      ">Subscribe 
+    </a>
+    </div>
+
+   
+  </div>
+</body>
+</html>
